@@ -1,0 +1,64 @@
+def validate_password(password):
+    """
+    Функция принимает пароль строкой и выполняет валидацию с помощью трёх
+    вспомогательных функций:
+    1. Содержит только a−z, A−Z, 0−9
+    2. Содержит четное количество букв
+    3. Содержит нечетное количество цифр
+    Основная функция возвращает True, если пароль валидный.
+    Если пароль не валидный, возвращает лист стрингов, в которых перечислены
+    причины неуспешной проверки. Например: ["содержит запрещенные символы"]
+    """
+    def validate_symbols(input_str):
+        input_str = password
+        """
+        Проверяет строку на наличие запрещенных символов
+        Подсказка: у строк есть метод, проверяющий наличие только був и цифр
+        Возвращает True\False
+        """
+        if input_str.isalnum():
+            return True
+        else:
+            return False
+
+    def validate_letters_even(input_str):
+        """
+        Проверяет строку на четное количество букв
+        Возвращает True\False
+        """
+        counter_for_alpha = 0
+        for elem in input_str:
+            if elem.isalpha():
+                counter_for_alpha += 1
+        if counter_for_alpha % 2 == 0:
+            return True
+        else:
+            return False
+
+
+    def validate_numbers_odd(input_str):
+        """
+        Проверяет строку на нечетное количество цифр
+        Возвращает True\False
+        """
+        counter_for_digit = 0
+        for elem in input_str:
+            if elem.isnumeric():
+                counter_for_digit += 1
+        if counter_for_digit % 2 == 0:
+            return False
+        else:
+            return True
+        pass
+    if validate_symbols(input_str=password) is False:
+        return 'Pls enter only letters and numbers dont use chars'
+    elif validate_letters_even(input_str=password) is False:
+        return 'Pls enter password which will consist only pair quantity of latters'
+    elif validate_numbers_odd(input_str=password) is False:
+        return 'Pls enter password which will consist only unpair quantity of numbers'
+    else:
+        return 'God demn you could follow all rules'
+
+    
+a = validate_password(password=input())
+print(a)
